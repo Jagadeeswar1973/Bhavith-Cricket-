@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhavith Reddy — Cricket Profile</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F8F6F1;
+  --ink: #1A1A1A;
+  --green: #2D5A27;
+  --gold: #9A7200;
+  --rule: #D4D0C8;
+  --muted: #6B6860;
+  --soft: #F0EDE4;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+/* HEADER */
+.hdr { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 20px 0 16px; margin-bottom: 8px; }
+.hdr-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+.pname { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
+.pname small { display: block; font-size: 0.82rem; font-weight: 400; font-style: italic; color: var(--muted); margin-top: 4px; }
+.badge { background: var(--green); color: #fff; font-family: system-ui, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; white-space: nowrap; align-self: center; }
+.meta { display: flex; flex-wrap: wrap; gap: 5px 18px; margin-top: 10px; font-family: system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
+.meta b { color: var(--ink); }
+
+/* SNAPSHOT */
+.snap { background: var(--ink); color: #fff; padding: 22px 24px; margin: 18px 0; border-radius: 2px; }
+.snap-lbl { font-family: system-ui, sans-serif; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+.snap-hl { font-size: 1.75rem; font-weight: 700; line-height: 1.2; }
+.snap-hl .big { font-size: 3rem; color: #E8C44A; }
+.snap-sub { font-family: system-ui, sans-serif; font-size: 0.8rem; color: #bbb; margin-top: 6px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.pill { font-family: system-ui, sans-serif; font-size: 0.73rem; border: 1px solid #555; border-radius: 2px; padding: 4px 10px; color: #ccc; }
+.pill b { color: #E8C44A; }
+
+/* SECTIONS */
+.sec { margin-top: 28px; border-top: 2px solid var(--ink); padding-top: 14px; }
+.sec-title { font-family: system-ui, sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+
+/* STAT GRID */
+.sgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.scell { background: var(--bg); padding: 14px 14px 12px; }
+.sval { font-size: 1.6rem; font-weight: 700; line-height: 1; color: var(--ink); }
+.sval.g { color: var(--green); }
+.slbl { font-family: system-ui, sans-serif; font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; font-family: system-ui, sans-serif; font-size: 0.82rem; }
+thead th { text-align: left; font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--ink); }
+tbody td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--rule); color: var(--ink); vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+.bold { font-weight: 700; }
+.gc { color: var(--green); font-weight: 700; }
+.ftag { display: inline-block; font-family: system-ui, sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; background: #d4edda; color: #1a5c2a; }
+
+/* TOURS */
+.tgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tcard { background: var(--soft); border: 1px solid var(--rule); border-radius: 2px; padding: 16px; }
+.tname { font-size: 0.92rem; font-weight: 700; border-bottom: 1px solid var(--rule); padding-bottom: 8px; margin-bottom: 10px; }
+.trow { display: flex; justify-content: space-between; font-family: system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); margin-bottom: 4px; }
+.trow b { color: var(--ink); }
+.tach { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.73rem; color: var(--green); font-weight: 600; }
+
+/* TOURNAMENT */
+.tblock { background: var(--soft); border: 1px solid var(--rule); border-radius: 2px; padding: 16px; margin-bottom: 12px; }
+.tblock-name { font-weight: 700; font-size: 0.92rem; border-bottom: 1px solid var(--rule); padding-bottom: 8px; margin-bottom: 12px; }
+.tstat-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; font-family: system-ui, sans-serif; font-size: 0.78rem; }
+.tstat-val { font-size: 1.3rem; font-weight: 700; }
+.tstat-val.g { color: var(--green); }
+.tstat-lbl { color: var(--muted); font-size: 0.7rem; }
+
+/* ACHIEVEMENTS */
+.ach-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.85rem; }
+.ach-row:last-child { border-bottom: none; }
+.ach-n { color: var(--ink); }
+.ach-c { font-weight: 700; font-size: 1rem; color: var(--gold); }
+
+/* WHY */
+.wgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+.witem { display: flex; gap: 8px; align-items: flex-start; font-family: system-ui, sans-serif; font-size: 0.83rem; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.wchk { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+/* TARGETS */
+.tgt { padding: 10px 14px; border-left: 3px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 8px; }
+.tgt.active { border-left-color: var(--green); color: var(--ink); font-style: normal; font-weight: 600; }
+
+/* MEDIA NOTE */
+.mnote { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); background: var(--soft); border: 1px solid var(--rule); padding: 14px 16px; border-radius: 2px; font-style: italic; }
+
+/* FOOTER */
+.footer { margin-top: 40px; border-top: 2px solid var(--ink); padding-top: 16px; font-family: system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.footer b { color: var(--ink); }
+
+@media (max-width: 520px) {
+  .pname { font-size: 1.6rem; }
+  .snap-hl { font-size: 1.3rem; }
+  .snap-hl .big { font-size: 2.2rem; }
+  .sgrid { grid-template-columns: repeat(2, 1fr); }
+  .tgrid { grid-template-columns: 1fr; }
+  .wgrid { grid-template-columns: 1fr; }
+  .tstat-row { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════ -->
+<header class="hdr">
+  <div class="hdr-top">
+    <div class="pname">
+      Bhavith Reddy
+      <small>Gangireddy Bhavith Reddy</small>
+    </div>
+    <div class="badge">Kadapa U16 Selection Probables</div>
+  </div>
+  <div class="meta">
+    <span>Age: <b>15</b></span>
+    <span>DOB: <b>06 Sep 2011</b></span>
+    <span>Role: <b>Lower Order Batsman</b></span>
+    <span>Bat: <b>Right Hand</b></span>
+    <span>Bowl: <b>Right Arm Leg Spin</b></span>
+    <span>Height: <b>151 cm</b></span>
+    <span>Weight: <b>57 kg</b></span>
+    <span>From: <b>Kadapa, Andhra Pradesh</b></span>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     SELECTOR SNAPSHOT  ← most important section
+══════════════════════════════════════════════ -->
+<div class="snap">
+  <div class="snap-lbl">Selector Snapshot</div>
+  <div class="snap-hl">
+    <span class="big">11</span> wickets<br>in 2 U16 Probables matches
+  </div>
+  <div class="snap-sub">Match 1 — 5 wickets &nbsp;·&nbsp; Match 2 — 6 wickets</div>
+  <div class="pills">
+    <div class="pill">International: <b>Sri Lanka Tour</b></div>
+    <div class="pill">State Tour: <b>Bangalore Tour</b></div>
+    <div class="pill">Man of Match: <b>7</b></div>
+    <div class="pill">5-Wkt Hauls: <b>2</b></div>
+    <div class="pill">Best Bowler Awards: <b>3</b></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CAREER STATS
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Career Stats</div>
+  <div class="sgrid">
+    <div class="scell"><div class="sval g">78*</div><div class="slbl">Highest Score</div></div>
+    <div class="scell"><div class="sval">6</div><div class="slbl">Half Centuries</div></div>
+    <div class="scell"><div class="sval">0</div><div class="slbl">Centuries</div></div>
+    <div class="scell"><div class="sval g">2</div><div class="slbl">5-Wicket Hauls</div></div>
+    <div class="scell"><div class="sval">27</div><div class="slbl">Catches</div></div>
+    <div class="scell"><div class="sval">8</div><div class="slbl">Run Outs</div></div>
+    <div class="scell"><div class="sval g">7</div><div class="slbl">Man of Match</div></div>
+    <div class="scell"><div class="sval">1</div><div class="slbl">Man of Series</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     RECENT FORM
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Recent Form</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Opponent</th>
+        <th>Runs</th>
+        <th>Wickets</th>
+        <th>Runs Given</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--muted);white-space:nowrap">21 May</td>
+        <td>SCA Lions</td>
+        <td class="bold">58*</td>
+        <td class="gc">1 Wkt</td>
+        <td style="color:var(--muted)">10 runs</td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted);white-space:nowrap">18 May</td>
+        <td>SCA Titans</td>
+        <td class="bold">52</td>
+        <td class="gc">2 Wkts</td>
+        <td style="color:var(--muted)">22 runs</td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted);white-space:nowrap">11 May</td>
+        <td>RSE Sports</td>
+        <td class="bold">3*</td>
+        <td class="gc">5 Wkts</td>
+        <td style="color:var(--muted)">38 runs</td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted);white-space:nowrap">Probables M1</td>
+        <td>U16 Trials</td>
+        <td style="color:var(--muted)">—</td>
+        <td class="gc">5 Wkts</td>
+        <td style="color:var(--muted)">—</td>
+      </tr>
+      <tr>
+        <td style="color:var(--muted);white-space:nowrap">Probables M2</td>
+        <td>U16 Trials</td>
+        <td style="color:var(--muted)">—</td>
+        <td class="gc">6 Wkts</td>
+        <td style="color:var(--muted)">—</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px;font-family:system-ui,sans-serif;font-size:0.8rem">
+    Current Form: <span class="ftag">Excellent ★★★★★</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOURS
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Tours & International Exposure</div>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="tname">Sri Lanka Tour — 2023</div>
+      <div class="trow"><span>Matches</span><b>3</b></div>
+      <div class="trow"><span>Wickets</span><b>8</b></div>
+      <div class="trow"><span>Best Bowling</span><b>4/26</b></div>
+      <div class="tach">✓ Emerging Player &nbsp;·&nbsp; ✓ Best Bowler</div>
+    </div>
+    <div class="tcard">
+      <div class="tname">Bangalore Tour — 2022</div>
+      <div class="trow"><span>Matches</span><b>5</b></div>
+      <div class="trow"><span>Wickets</span><b>9</b></div>
+      <div class="trow"><span>Best Bowling</span><b>3/12</b></div>
+      <div class="tach">✓ Best All Rounder</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOURNAMENTS
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Tournaments</div>
+  <div class="tblock">
+    <div class="tblock-name">SCA League 2026</div>
+    <div class="tstat-row">
+      <div><div class="tstat-val">4</div><div class="tstat-lbl">Matches</div></div>
+      <div><div class="tstat-val">127</div><div class="tstat-lbl">Runs</div></div>
+      <div><div class="tstat-val g">4</div><div class="tstat-lbl">Wickets</div></div>
+      <div><div class="tstat-val">58*</div><div class="tstat-lbl">H. Score</div></div>
+      <div><div class="tstat-val">2</div><div class="tstat-lbl">50s</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ACHIEVEMENTS
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Achievement Wall</div>
+  <div class="ach-row"><span class="ach-n">Best Bowler Awards</span><span class="ach-c">3</span></div>
+  <div class="ach-row"><span class="ach-n">Man of the Match</span><span class="ach-c">7</span></div>
+  <div class="ach-row"><span class="ach-n">Man of the Series</span><span class="ach-c">1</span></div>
+  <div class="ach-row"><span class="ach-n">Emerging Player</span><span class="ach-c">1</span></div>
+  <div class="ach-row"><span class="ach-n">Best All Rounder</span><span class="ach-c">1</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     WHY SELECT
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Why Select Bhavith?</div>
+  <div class="wgrid">
+    <div class="witem"><span class="wchk">✓</span><span>Proven wicket-taking leg spinner</span></div>
+    <div class="witem"><span class="wchk">✓</span><span>11 wickets in Kadapa U16 Probables</span></div>
+    <div class="witem"><span class="wchk">✓</span><span>International exposure — Sri Lanka Tour</span></div>
+    <div class="witem"><span class="wchk">✓</span><span>Award-winning performer</span></div>
+    <div class="witem"><span class="wchk">✓</span><span>Reliable lower-order batsman</span></div>
+    <div class="witem"><span class="wchk">✓</span><span>Strong fielder — 27 catches, 8 run outs</span></div>
+    <div class="witem"><span class="wchk">✓</span><span>Consistent match impact</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FUTURE TARGETS
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Future Targets</div>
+  <div class="tgt active">▶ Kadapa U16 Selection</div>
+  <div class="tgt">Andhra Cricket Association Representation</div>
+  <div class="tgt">National Level Cricket</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MEDIA
+══════════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Photo & Video</div>
+  <div class="mnote">
+    Photos and video highlights available on request — bowling action, Sri Lanka Tour, Bangalore Tour, team photos, trophies, and match highlights. Contact below.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER / CONTACT
+     ↓ UPDATE YOUR CONTACT DETAILS BELOW ↓
+══════════════════════════════════════════════ -->
+<div class="footer">
+  <div>
+    <b>Contact: Bhavith's Family</b><br>
+    your.email@gmail.com &nbsp;·&nbsp; +91 XXXXX XXXXX
+  </div>
+  <div>Last updated: June 2025</div>
+</div>
+
+</body>
+</html>
